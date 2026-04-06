@@ -1,0 +1,23 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - comp3133_mongo_data:/data/db
+
+  api:
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/comp3133_101498001_Assigment1
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      CORS_ORIGIN: http://localhost:4200,http://127.0.0.1:4200
+    depends_on:
+      - mongo
+
+volumes:
+  comp3133_mongo_data:

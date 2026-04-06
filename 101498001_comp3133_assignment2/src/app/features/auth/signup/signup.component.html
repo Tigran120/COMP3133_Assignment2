@@ -1,0 +1,70 @@
+<div class="auth-shell py-5">
+  <div class="card shadow-sm mx-auto auth-card">
+    <div class="card-body p-4">
+      <h1 class="h4 text-center mb-4">Sign up</h1>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <label class="form-label" for="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            class="form-control"
+            formControlName="username"
+            autocomplete="username"
+            [class.is-invalid]="form.controls.username.invalid && form.controls.username.touched"
+          />
+          @if (form.controls.username.invalid && form.controls.username.touched) {
+            <div class="invalid-feedback d-block">Username is required (2–64 characters).</div>
+          }
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            formControlName="email"
+            autocomplete="email"
+            [class.is-invalid]="form.controls.email.invalid && form.controls.email.touched"
+          />
+          @if (form.controls.email.invalid && form.controls.email.touched) {
+            <div class="invalid-feedback d-block">Enter a valid email.</div>
+          }
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            formControlName="password"
+            autocomplete="new-password"
+            [class.is-invalid]="form.controls.password.invalid && form.controls.password.touched"
+          />
+          @if (form.controls.password.invalid && form.controls.password.touched) {
+            <div class="invalid-feedback d-block">At least 6 characters.</div>
+          }
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="confirmPassword">Confirm password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            class="form-control"
+            formControlName="confirmPassword"
+            autocomplete="new-password"
+          />
+        </div>
+        @if (errorMessage) {
+          <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+        }
+        <button type="submit" class="btn btn-success w-100" [disabled]="submitting">
+          {{ submitting ? 'Creating account…' : 'Create account' }}
+        </button>
+      </form>
+      <p class="text-center text-muted small mt-3 mb-0">
+        Already registered? <a routerLink="/login">Login</a>
+      </p>
+    </div>
+  </div>
+</div>

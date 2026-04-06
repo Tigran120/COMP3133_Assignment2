@@ -1,0 +1,41 @@
+<div class="container py-4">
+  <div class="card shadow-sm mx-auto detail-card">
+    <div class="card-body p-4">
+      <h1 class="h4 text-center mb-4">View Employee Details</h1>
+      @if (loading) {
+        <p class="text-muted text-center">Loading…</p>
+      } @else if (error) {
+        <div class="alert alert-danger">{{ error }}</div>
+        <a routerLink="/employees" class="btn btn-secondary">Back to list</a>
+      } @else if (employee) {
+        @if (employee.employee_photo) {
+          <div class="text-center mb-4">
+            <img [src]="employee.employee_photo" alt="Profile" class="photo rounded shadow-sm" />
+          </div>
+        }
+        <dl class="row mb-0">
+          <dt class="col-sm-4">Employee First Name</dt>
+          <dd class="col-sm-8">{{ employee.first_name }}</dd>
+          <dt class="col-sm-4">Employee Last Name</dt>
+          <dd class="col-sm-8">{{ employee.last_name }}</dd>
+          <dt class="col-sm-4">Employee Email ID</dt>
+          <dd class="col-sm-8">{{ employee.email }}</dd>
+          <dt class="col-sm-4">Gender</dt>
+          <dd class="col-sm-8">{{ employee.gender }}</dd>
+          <dt class="col-sm-4">Department</dt>
+          <dd class="col-sm-8">{{ employee.department }}</dd>
+          <dt class="col-sm-4">Position</dt>
+          <dd class="col-sm-8">{{ employee.designation }}</dd>
+          <dt class="col-sm-4">Salary</dt>
+          <dd class="col-sm-8">{{ employee.salary | salaryCad }}</dd>
+          <dt class="col-sm-4">Date of joining</dt>
+          <dd class="col-sm-8">{{ employee.date_of_joining | isoDate }}</dd>
+        </dl>
+        <div class="d-flex gap-2 justify-content-center mt-4">
+          <a routerLink="/employees" class="btn btn-secondary">Back to list</a>
+          <a [routerLink]="['/update-employee', employee._id]" class="btn btn-primary">Edit</a>
+        </div>
+      }
+    </div>
+  </div>
+</div>

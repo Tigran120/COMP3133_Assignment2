@@ -1,0 +1,26 @@
+{
+  "name": "comp3133-101498001-assignment1",
+  "version": "1.0.0",
+  "description": "Employee Management System - GraphQL API with Node.js, Express, MongoDB",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": ["graphql", "express", "mongodb", "employee-management"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "apollo-server-express": "^3.13.0",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-validator": "^7.2.0",
+    "graphql": "^16.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}

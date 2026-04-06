@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "COMP3133 Assignment 1 - Employee Management GraphQL",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Signup",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"mutation { signup(input: { username: \\\"testuser\\\", email: \\\"test@example.com\\\", password: \\\"password123\\\" }) { success message token user { _id username email } } }\"\n}"
+        },
+        "url": "http://localhost:4000/graphql"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"query { login(input: { usernameOrEmail: \\\"testuser\\\", password: \\\"password123\\\" }) { success message token user { _id username email } } }\"\n}"
+        },
+        "url": "http://localhost:4000/graphql"
+      }
+    },
+    {
+      "name": "Get All Employees",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"query { getAllEmployees { success message count employees { _id first_name last_name email designation department } } }\"\n}"
+        },
+        "url": "http://localhost:4000/graphql"
+      }
+    },
+    {
+      "name": "Add Employee",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"mutation { addEmployee(input: { first_name: \\\"John\\\", last_name: \\\"Doe\\\", email: \\\"john.doe@company.com\\\", gender: \\\"Male\\\", designation: \\\"Developer\\\", salary: 5000, date_of_joining: \\\"2024-01-15\\\", department: \\\"Engineering\\\" }) { success message employee { _id first_name last_name email } } }\"\n}"
+        },
+        "url": "http://localhost:4000/graphql"
+      }
+    },
+    {
+      "name": "Get Employee by ID",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"query { getEmployeeByEid(eid: \\\"EMPLOYEE_ID_HERE\\\") { success message employee { _id first_name last_name email designation department } } }\"\n}"
+        },
+        "url": "http://localhost:4000/graphql"
+      }
+    },
+    {
+      "name": "Update Employee",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"mutation { updateEmployee(eid: \\\"EMPLOYEE_ID_HERE\\\", input: { designation: \\\"Senior Developer\\\", salary: 6000 }) { success message employee { _id designation salary } } }\"\n}"
+        },
+        "url": "http://localhost:4000/graphql"
+      }
+    },
+    {
+      "name": "Delete Employee",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"mutation { deleteEmployee(eid: \\\"EMPLOYEE_ID_HERE\\\") { success message } }\"\n}"
+        },
+        "url": "http://localhost:4000/graphql"
+      }
+    },
+    {
+      "name": "Search by Designation or Department",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"query { getEmployeesByDesignationOrDepartment(designation: \\\"Developer\\\", department: \\\"Engineering\\\") { success message count employees { _id first_name last_name designation department } } }\"\n}"
+        },
+        "url": "http://localhost:4000/graphql"
+      }
+    }
+  ]
+}

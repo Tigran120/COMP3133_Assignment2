@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-semibold" routerLink="/employees">Employee Management App</a>
+    <div class="navbar-nav ms-auto flex-row gap-2 align-items-center">
+      @if (auth.isAuthenticated()) {
+        <a class="btn btn-sm btn-outline-light" routerLink="/employees">Employees</a>
+        <button type="button" class="btn btn-sm btn-outline-light" (click)="logout()">Logout</button>
+      } @else {
+        <a class="btn btn-sm btn-outline-light" routerLink="/login">Login</a>
+        <a class="btn btn-sm btn-outline-light" routerLink="/signup">Sign up</a>
+      }
+    </div>
+  </div>
+</nav>
+<main class="app-main">
+  <router-outlet />
+</main>

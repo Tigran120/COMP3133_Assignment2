@@ -1,0 +1,46 @@
+<div class="auth-shell py-5">
+  <div class="card shadow-sm mx-auto auth-card">
+    <div class="card-body p-4">
+      <h1 class="h4 text-center mb-4">Login</h1>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <label class="form-label" for="usernameOrEmail">Username or email</label>
+          <input
+            id="usernameOrEmail"
+            type="text"
+            class="form-control"
+            formControlName="usernameOrEmail"
+            autocomplete="username"
+            [class.is-invalid]="form.controls.usernameOrEmail.invalid && form.controls.usernameOrEmail.touched"
+          />
+          @if (form.controls.usernameOrEmail.invalid && form.controls.usernameOrEmail.touched) {
+            <div class="invalid-feedback d-block">Enter your username or email.</div>
+          }
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            formControlName="password"
+            autocomplete="current-password"
+            [class.is-invalid]="form.controls.password.invalid && form.controls.password.touched"
+          />
+          @if (form.controls.password.invalid && form.controls.password.touched) {
+            <div class="invalid-feedback d-block">Password must be at least 6 characters.</div>
+          }
+        </div>
+        @if (errorMessage) {
+          <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+        }
+        <button type="submit" class="btn btn-primary w-100" [disabled]="submitting">
+          {{ submitting ? 'Signing in…' : 'Login' }}
+        </button>
+      </form>
+      <p class="text-center text-muted small mt-3 mb-0">
+        No account? <a routerLink="/signup">Sign up</a>
+      </p>
+    </div>
+  </div>
+</div>
